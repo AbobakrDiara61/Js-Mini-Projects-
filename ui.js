@@ -1,15 +1,11 @@
 export function createQuoteElement({ quote, author }) {
-    const quoteWrapper = document.createElement("div");
-    quoteWrapper.classList.add("quote");
+    const quoteWrapper = document.querySelector(".quote-wrapper");
 
-    const quoteText = document.createElement("h2");
+    const quoteText = document.querySelector(".quote");
     quoteText.textContent = quote;
 
-    const quoteAuthor = document.createElement("h4");
+    const quoteAuthor = document.querySelector(".author");
     quoteAuthor.textContent = author;
-
-    quoteWrapper.appendChild(quoteText);
-    quoteWrapper.appendChild(quoteAuthor);
 
     return quoteWrapper;
 }

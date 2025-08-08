@@ -5,26 +5,26 @@ import * as Ui from "./ui.js";
 const request = new XMLHttpRequest();
 request.open("GET", "quotes.json");
 request.send();
-
-
+// Getting Random Index
 function* getIndex(limit) {
   while(true) {
     yield Math.floor(Math.random() * limit);
   }
 }
+// Getting Btn 
+const genBtn = document.querySelector(".generate-btn");
 request.onreadystatechange = () => {
   if(request.status === 200 && request.readyState === 4) {
-    const quotesJson = JSON.parse(request.responseText);
+    // const quotesJson = JSON.parse(request.responseText);
+    const quoteArray = [...JSON.parse(request.responseText)];
     // console.log(quotesJson);
-    let quoteArray = [];
-    
-    for(let quote of quotesJson) {
-      quoteArray.push(Ui.createQuoteElement(quote));
-    }
-    console.log(quoteArray);
+    // console.log(quoteArray);
     const randomIndex = getIndex(quoteArray.length);
-    console.log(quoteArray[randomIndex.next().value])
-    // document.body.appendChild(Ui.createQuoteElement(quoteArray[randomIndex.next().value]));
-    document.body.appendChild(quoteArray[randomIndex.next().value]); 
+    // console.log(quoteArray[randomIndex.next().value])
+    document.body.appendChild(Ui.createQuoteElement(quoteArray[randomIndex.next().value]));
+    genBtn.addEventListener("click", () => {
+      document.body.appendChild(Ui.createQuoteElement(quoteArray[randomIndex.next().value]));
+    })
+    // document.body.appendChild(quoteArray[randomIndex.next().value]); 
   }
 }
