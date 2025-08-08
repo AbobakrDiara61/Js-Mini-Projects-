@@ -1,0 +1,23 @@
+body {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to right, #8A2387, #E94057, #F27121);
+    background-position: 0% 50%;
+    background-size: 200% 100%;
+    margin: 0;
+    animation: waving 8s linear infinite alternate  /* forwards */;
+}
+
+@keyframes waving {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
